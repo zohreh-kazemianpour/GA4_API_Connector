@@ -1,31 +1,9 @@
-"""
-Test runner for GA4Reporter without calling the real GA4 API.
-
-How to use:
-1. Place this file in the same folder as:
-   - connector.py
-   - reporter.py
-
-2. Install dependencies if needed:
-   pip install pandas openpyxl
-
-3. Run:
-   python test_ga4_report.py
-
-Expected result:
-- A file called test_mcs_ws_ga4_report.xlsx is created.
-- The terminal prints the workbook path and sheet names.
-
-This test replaces the real GA4Connector with a mock connector, so no GA4 credentials
-or property access are required.
-"""
-
 from pathlib import Path
 
 import pandas as pd
 
-import reporter
-from reporter import GA4ReportConfig, GA4Reporter
+from ga4_connector import reporter
+from ga4_connector.reporter import GA4ReportConfig, GA4Reporter
 
 
 class MockGA4Connector:
