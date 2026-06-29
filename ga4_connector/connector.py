@@ -21,7 +21,7 @@ class GA4Connector:
         metrics: list[str],
         start_date: str,
         end_date: str,
-        limit: int = 10000,
+        limit: int = 5000,
     ) -> pd.DataFrame:
 
         if not dimensions:
