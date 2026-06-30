@@ -1,6 +1,8 @@
 from ga4_connector.connector import GA4Connector
 
 PROPERTY_ID = "543114448"
+START_DATE = "today" # today is just for testing, will change to "yesterday" when deploying
+END_DATE = "today" 
 
 
 def active_users_by_country(connector: GA4Connector):
@@ -8,8 +10,9 @@ def active_users_by_country(connector: GA4Connector):
     return connector.run_report(
         dimensions=["country"],
         metrics=["activeUsers"],
-        start_date="today",
-        end_date="today",
+        start_date=START_DATE,
+        end_date=END_DATE,
+        limit = 50,
     )
 
 
@@ -18,8 +21,9 @@ def event_counts_by_event_name(connector: GA4Connector):
     return connector.run_report(
         dimensions=["eventName"],
         metrics=["eventCount"],
-        start_date="today",
-        end_date="today",
+        start_date=START_DATE,
+        end_date=END_DATE,
+        limit = 50,
     )
 
 
