@@ -5,6 +5,8 @@ START_DATE = "today" # today is just for testing, will change to "yesterday" whe
 END_DATE = "today" 
 
 
+
+
 def active_users_by_country(connector: GA4Connector):
     """Example 1: active users grouped by country."""
     return connector.run_report(
