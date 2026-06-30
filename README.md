@@ -1,6 +1,6 @@
 # GA4 API Connector
 
-A lightweight Python package for retrieving Google Analytics 4 (GA4) data and generating Excel reports. The project is designed to separate the GA4 API layer from the reporting layer, making it easy to extend for additional reports or integrate with other analytics workflows.
+A lightweight Python package for retrieving Google Analytics 4 (GA4) data and generating reports. The project is designed to separate the GA4 API layer from the reporting layer, making it easy to extend for additional reports or integrate with other analytics workflows.
 
 # Project Structure
 
@@ -11,7 +11,6 @@ GA4_API_Connector/
 │   └── reporter.py
 ├── examples/
 │   ├── example_reports.py
-│   └── test_ga4_report.py
 ├── pyproject.toml
 └── README.md
 
@@ -31,44 +30,18 @@ The current implementation assumes Google Cloud authentication has been configur
 
 # Usage
 
-Create a report configuration and generate the report:
-
-from ga4_connector.reporter import GA4ReportConfig, GA4Reporter
-
-config = GA4ReportConfig(
-    property_id="YOUR_GA4_PROPERTY_ID",
-    start_date="30daysAgo",
-    end_date="yesterday",
-    output_path="ga4_report.xlsx",
-)
-
-reporter = GA4Reporter(config)
-reporter.export()
-
-The generated workbook contains multiple worksheets, including:
-
-Daily Overview
-Page Channel
-Channel Summary
-Landing Page Summary
-Products
-Events
-Findings
-Testing
-
-A mock-data example is included to test report generation without connecting to the GA4 API.
+Update the GA4 property ID and date range in examples/example_reports.py.
+A mock website was created to test report generation.
 
 Run:
 
-PYTHONPATH=. poetry run python examples/test_ga4_report.py
+PYTHONPATH=. poetry run python examples/example_reports.py
 
-This creates a sample Excel report using mock GA4 data, allowing the reporting pipeline to be validated without requiring Google Analytics credentials.
+This extracts the data from the mock website, allowing the connector and reporting pipeline to be validated.
 
 # Design
 
 The project is organised into two main components:
 
 GA4Connector (connector.py) – Handles communication with the Google Analytics Data API and returns results as pandas DataFrames.
-GA4Reporter (reporter.py) – Builds reports, aggregates metrics, generates business findings, and exports the results to Excel.
-
-This separation allows the connector to be reused independently while keeping reporting logic modular and easy to extend.
+examples_reports.py - Groups active users by coutries, and groups events by event name.
