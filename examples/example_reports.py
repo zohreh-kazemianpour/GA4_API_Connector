@@ -1,44 +1,24 @@
-from ga4_connector.connector import GA4Connector
+from ga4_connector import GA4ReportConfig, GA4Reporter
 
 PROPERTY_ID = "543114448"
-START_DATE = "today" # today is just for testing, will change to "yesterday" when deploying
-END_DATE = "today" 
-
-
-
-
-def active_users_by_country(connector: GA4Connector):
-    """Example 1: active users grouped by country."""
-    return connector.run_report(
-        dimensions=["country"],
-        metrics=["activeUsers"],
-        start_date=START_DATE,
-        end_date=END_DATE,
-        limit = 50,
-    )
-
-
-def event_counts_by_event_name(connector: GA4Connector):
-    """Example 2: event counts grouped by event name."""
-    return connector.run_report(
-        dimensions=["eventName"],
-        metrics=["eventCount"],
-        start_date=START_DATE,
-        end_date=END_DATE,
-        limit = 50,
-    )
-
+START_DATE = "today"  # Use "yesterday" for production reporting.
+END_DATE = "today" # Use "today" for test and dev.
 
 def main():
-    connector = GA4Connector(property_id=PROPERTY_ID)
+    config = GA4ReportConfig(
+        property_id=PROPERTY_ID,
+        start_date=START_DATE,
+        end_date=END_DATE,
+        limit=50,
+    )
 
-    print("\nExample 1: Active users by country")
-    country_report = active_users_by_country(connector)
-    print(country_report)
+    reporter = GA4Reporter(config)
+
+    print("\nExample 1: Active users by country and city")
+    print(reporter.active_users_by_country())
 
     print("\nExample 2: Event counts by event name")
-    event_report = event_counts_by_event_name(connector)
-    print(event_report)
+    print(reporter.event_counts_by_event_name())
 
 
 if __name__ == "__main__":
