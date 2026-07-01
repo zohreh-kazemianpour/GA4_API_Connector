@@ -1,7 +1,7 @@
 from ga4_connector import GA4ReportConfig, GA4Reporter
 
 PROPERTY_ID = "543114448"
-START_DATE = "today"  # Use "yesterday" for production reporting.
+START_DATE = "yesterday"  # Use "yesterday" for production reporting.
 END_DATE = "today" # Use "today" for test and dev.
 
 def main():
