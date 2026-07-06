@@ -16,26 +16,10 @@ def main():
     reporter = GA4Reporter(config)
 
     print("\nExample 1: Active users and event count by date")
-    print(
-        reporter.connector.run_report(
-            dimensions=["date"],
-            metrics=["activeUsers", "eventCount"],
-            start_date=START_DATE,
-            end_date=END_DATE,
-            limit=50,
-        )
-    )
+    print(reporter.daily_activity())
 
     print("\nExample 2: Event counts by event name")
-    print(
-        reporter.connector.run_report(
-            dimensions=["eventName"],
-            metrics=["eventCount"],
-            start_date=START_DATE,
-            end_date=END_DATE,
-            limit=50,
-        )
-    )
+    print(reporter.event_counts_by_event_name())
 
 
 if __name__ == "__main__":

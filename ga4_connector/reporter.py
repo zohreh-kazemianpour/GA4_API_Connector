@@ -20,6 +20,15 @@ class GA4Reporter:
         self.config = config
         self.connector = GA4Connector(property_id=config.property_id)
 
+    def daily_activity(self) -> pd.DataFrame:
+        return self.connector.run_report(
+            dimensions=["date"],
+            metrics=["activeUsers", "eventCount"],
+            start_date=self.config.start_date,
+            end_date=self.config.end_date,
+            limit=self.config.limit,
+        )
+
     def active_users_by_country(self) -> pd.DataFrame:
         return self.connector.run_report(
             dimensions=["country", "city"],
