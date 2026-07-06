@@ -4,7 +4,7 @@ from google.analytics.data_v1beta import BetaAnalyticsDataClient
 from google.analytics.data_v1beta.types import DateRange, Dimension, Metric, RunReportRequest
 from google.api_core.exceptions import GoogleAPIError, InvalidArgument, PermissionDenied, Unauthenticated
 
-# Once company access is granted, will cahnge the auth methods.
+
 
 class GA4Connector:
     """Connector for the Google Analytics 4 Data API."""
