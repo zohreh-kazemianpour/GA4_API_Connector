@@ -1,9 +1,18 @@
 import pandas as pd
 
 from google.analytics.data_v1beta import BetaAnalyticsDataClient
-from google.analytics.data_v1beta.types import DateRange, Dimension, Metric, RunReportRequest
-from google.api_core.exceptions import GoogleAPIError, InvalidArgument, PermissionDenied, Unauthenticated
-
+from google.analytics.data_v1beta.types import (
+    DateRange,
+    Dimension,
+    Metric,
+    RunReportRequest,
+)
+from google.api_core.exceptions import (
+    GoogleAPIError,
+    InvalidArgument,
+    PermissionDenied,
+    Unauthenticated,
+)
 
 
 class GA4Connector:
@@ -12,8 +21,6 @@ class GA4Connector:
     def __init__(self, property_id: str):
         self.property_id = property_id
         self.client = BetaAnalyticsDataClient()
-    
-
 
     def run_report(
         self,
@@ -57,9 +64,7 @@ class GA4Connector:
             ) from exc
 
         except GoogleAPIError as exc:
-            raise RuntimeError(
-                f"Google Analytics API error: {exc}"
-            ) from exc
+            raise RuntimeError(f"Google Analytics API error: {exc}") from exc
 
         rows = []
         for row in response.rows:
